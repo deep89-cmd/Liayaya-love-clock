@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#5b183c">
+<title>Liayaya — 12 Hours of Love</title>
+<style>
+:root{--pink:#ffb6cf;--rose:#f45d91;--wine:#5b183c;--cream:#fff7f8;--gold:#f7d68a}
+*{box-sizing:border-box}
+body{margin:0;font-family:Georgia,'Times New Roman',serif;color:#fff8fb;background:radial-gradient(circle at 50% 10%,#9d416c 0,#541632 45%,#210b20 100%);min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:34px 34px}
+header{text-align:center;padding:42px 16px 18px}
+.eyebrow{letter-spacing:4px;text-transform:uppercase;color:#ffd8e5;font:11px Arial,sans-serif}
+h1{font-size:clamp(34px,7vw,66px);font-weight:400;margin:12px 0 8px;color:#fff0f5;text-shadow:0 4px 25px #ff6fa7}
+.subtitle{font:15px/1.7 Arial,sans-serif;color:#ffe0eb;max-width:650px;margin:auto}
+.hero{display:flex;justify-content:center;padding:12px 12px 28px}
+.clock{position:relative;width:min(88vw,510px);aspect-ratio:1;border-radius:50%;border:2px solid #f8c5d7;background:radial-gradient(circle,#8b315d 0,#4c1738 68%,#2b1028 100%);box-shadow:0 0 0 9px #ffffff0b,0 0 55px #ff83b866,inset 0 0 35px #170718}
+.clock:before{content:"";position:absolute;inset:5%;border:1px dashed #ffd7e6aa;border-radius:50%}
+.clock-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34%;text-align:center;z-index:3}
+.clock-center .heart{font-size:clamp(27px,5vw,44px);animation:pulse 1.8s infinite}
+.clock-center strong{display:block;font-size:clamp(13px,2.5vw,19px);color:#ffe8ef}
+.clock-center small{font:10px Arial,sans-serif;color:#ffc5d8;letter-spacing:2px}
+@keyframes pulse{50%{transform:scale(1.18)}}
+.hour{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px;border:2px solid #ffd2e1;background:#fff1f6;color:#702342;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;cursor:pointer;box-shadow:0 5px 18px #16071388;transition:.25s;overflow:hidden}
+.hour:hover,.hour:focus{transform:scale(1.13);box-shadow:0 0 0 5px #ff9cbe55,0 8px 25px #160713aa;outline:none}
+.hour img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hour .number{position:absolute;right:4px;top:3px;background:#fff0f5dd;border-radius:50%;width:23px;height:23px;display:grid;place-items:center;font:bold 12px Arial,sans-serif;z-index:1}
+.hour .fallback{font-size:24px}
+.hour .tiny{position:absolute;bottom:5px;background:#5b183ccc;color:white;border-radius:20px;padding:2px 7px;font:9px Arial,sans-serif;z-index:1}
+.hint{text-align:center;font:12px Arial,sans-serif;color:#ffd5e3;margin:0 0 28px}
+.actions{max-width:900px;margin:0 auto;padding:0 16px 50px}
+.section-title{text-align:center;font-size:26px;font-weight:400;color:#ffe7ef;margin:20px 0}
+.button-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}
+button{font:14px Arial,sans-serif;cursor:pointer}
+.love-btn{border:1px solid #ffbfd4;background:#ffffff12;color:#fff1f6;border-radius:30px;padding:13px 15px;transition:.2s}
+.love-btn:hover{background:#ffbfd4;color:#591934;transform:translateY(-2px)}
+.special{display:block;margin:24px auto 0;max-width:440px;width:100%;padding:17px;border:1px solid var(--gold);border-radius:18px;background:linear-gradient(120deg,#9e3b68,#5b183c);color:#fff4d5;font-size:16px;box-shadow:0 8px 30px #16071366}
+.note{text-align:center;color:#ffd5e3;font:12px/1.7 Arial,sans-serif;margin:22px auto;max-width:620px}
+footer{text-align:center;padding:0 16px 35px;color:#ffc6d9;font:12px Arial,sans-serif}
+.modal{display:none;position:fixed;inset:0;z-index:10;background:#120711d9;align-items:center;justify-content:center;padding:18px}
+.modal.show{display:flex}
+.paper{position:relative;max-width:560px;width:100%;max-height:85vh;overflow:auto;border:1px solid #ffd1df;border-radius:24px;padding:28px 24px;background:linear-gradient(145deg,#fff5f7,#ffe2eb);color:#5b183c;box-shadow:0 15px 70px #0009;text-align:center}
+.paper h2{font-weight:400;font-size:28px;margin:8px 0 15px}
+.paper p{font:15px/1.8 Arial,sans-serif;white-space:pre-line}
+.paper .indo{color:#8d3159;font-style:italic}
+.close{position:absolute;right:13px;top:10px;border:0;background:transparent;color:#702342;font-size:26px}
+.paper .mini{font:11px Arial,sans-serif;letter-spacing:2px;color:#b04c76}
+#couplePhoto{display:none;width:min(100%,360px);max-height:300px;object-fit:cover;border-radius:16px;margin:12px auto;border:3px solid #fff;box-shadow:0 5px 18px #8b315955}
+.music{margin:22px auto 0;display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap}
+.music button{border:1px solid #ffd1df;border-radius:30px;padding:11px 16px;background:#ffffff16;color:#fff}
+@media(max-width:420px){.hour{width:62px;height:62px;margin:-31px}.hour .tiny{font-size:8px}.clock-center{width:38%}}
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">A little universe made just for you</div>
+  <h1>Liayaya <span style="color:#ffb6cf">♡</span></h1>
+  <p class="subtitle">12 hours, 12 little love notes — and one heart that keeps choosing you.<br>12 jam, 12 pesan cinta — dan satu hati yang selalu memilihmu.</p>
+</header>
+
+<main>
+<section class="hero" aria-label="Interactive love clock">
+  <div class="clock" id="clock">
+    <div class="clock-center"><div class="heart">💗</div><strong>My Sweetheart Jaan</strong><small>ALWAYS YOU</small></div>
+  </div>
+</section>
+<p class="hint">Tap any photo or number on the clock to open your love note · Sentuh foto atau angka untuk membaca pesannya</p>
+
+<section class="actions">
+  <h2 class="section-title">Little pieces of my heart ✨</h2>
+  <div class="button-grid" id="letterButtons"></div>
+  <button class="special" onclick="openNote('together')">💞 Our Picture, Our Promise · Foto Kita, Janji Kita</button>
+  <div class="music">
+    <button onclick="toggleMusic()" id="musicBtn">♫ Play our song</button>
+    <span style="font:11px Arial,sans-serif;color:#ffd5e3">Add your licensed song as <b>music.mp3</b> in the same folder.</span>
+    <audio id="bgMusic" loop preload="none"><source src="music.mp3" type="audio/mpeg"></audio>
+  </div>
+  <p class="note">Every photo is a little memory. Every message is a reminder: you are appreciated, respected, and never taken for granted.<br>Setiap foto adalah kenangan kecil. Setiap pesan adalah pengingat bahwa kamu selalu dihargai, dihormati, dan disayangi.</p>
+</section>
+</main>
+<footer>Made with a whole lot of love for Liayaya · Dibuat dengan sepenuh hati untuk Liayaya ♡</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="noteTitle" onclick="if(event.target===this)closeNote()">
+  <div class="paper">
+    <button class="close" onclick="closeNote()" aria-label="Close">×</button>
+    <div class="mini">A NOTE FROM MY HEART</div>
+    <h2 id="noteTitle">For you, my love</h2>
+    <img id="couplePhoto" src="couple.jpg" alt="Our special picture" onerror="this.style.display='none'">
+    <p id="noteEn"></p>
+    <p class="indo" id="noteId"></p>
+    <div style="font-size:23px">♡ 🌷 ♡</div>
+  </div>
+</div>
+
+<script>
+const notes = [
+["When I think of you","My day can be busy and the world can be loud, but one thought of you brings a little peace to my heart. I hope you feel loved even when we're miles apart.","Saat hariku sibuk dan dunia terasa ramai, memikirkanmu selalu membawa ketenangan kecil ke hatiku. Semoga kamu tetap merasa dicintai meski kita berjauhan."],
+["Your beautiful heart","Your beauty caught my attention, but your heart is what makes me want to know you more. I want to understand your dreams, your little habits, and everything that makes you you.","Kecantikanmu menarik perhatianku, tetapi hatimu membuatku ingin mengenalmu lebih dalam. Aku ingin memahami impianmu, kebiasaan kecilmu, dan semua hal tentang dirimu."],
+["My favourite notification","A message from you can turn an ordinary moment into my favourite one. So never think your little texts don't matter — they make me smile.","Pesan darimu bisa mengubah momen biasa menjadi momen favoritku. Jadi jangan pernah berpikir pesan kecilmu tidak berarti — semuanya membuatku tersenyum."],
+["My pretty girl","Hey, cantikku. I hope you remember how special you are. You deserve gentle words, sincere effort, respect, and a love that makes you feel safe.","Hei, cantikku. Semoga kamu selalu ingat betapa istimewanya dirimu. Kamu pantas mendapatkan kata-kata lembut, usaha tulus, rasa hormat, dan cinta yang membuatmu merasa aman."],
+["A soft place to land","You don't have to pretend to be happy every day with me. I want to listen on your bright days and your difficult ones. Your feelings matter to me.","Kamu tidak harus selalu berpura-pura bahagia saat bersamaku. Aku ingin mendengarkanmu di hari bahagia maupun hari yang berat. Perasaanmu berarti bagiku."],
+["My little blessing","Sometimes a person enters our life and makes ordinary things feel sweeter. I'm grateful our paths crossed, Liayaya. Matur nuwun for being you.","Kadang seseorang hadir dalam hidup kita dan membuat hal-hal sederhana terasa lebih indah. Aku bersyukur jalan kita bertemu, Liayaya. Terima kasih sudah menjadi dirimu."],
+["Distance can't erase care","Even when I can't be beside you, I can still be honest, thoughtful, and consistent. I want my actions to make you feel my care, not just my words.","Walaupun aku belum bisa berada di sisimu, aku tetap bisa jujur, perhatian, dan konsisten. Aku ingin tindakanku membuatmu merasakan kasih sayangku, bukan hanya kata-kataku."],
+["My favourite person","Among all the faces I may see in a day, yours is the one my heart looks for. For me, you are wonderfully you — and that's more than enough.","Di antara semua wajah yang kulihat setiap hari, wajahmulah yang dicari hatiku. Bagiku, kamu istimewa dengan caramu sendiri — dan itu lebih dari cukup."],
+["A promise of patience","I don't want to rush your heart. Take the time you need, ask every question, and let trust grow naturally. I'll keep showing up with honesty and patience.","Aku tidak ingin terburu-buru dengan hatimu. Ambillah waktu yang kamu perlukan, tanyakan apa pun, dan biarkan kepercayaan tumbuh dengan alami. Aku akan terus hadir dengan kejujuran dan kesabaran."],
+["My future dream","If life gives us the chance to build a future together, I want it to be full of friendship, laughter, respect, and teamwork. I want us to choose each other every day.","Jika hidup memberi kita kesempatan untuk membangun masa depan bersama, aku ingin masa depan itu penuh persahabatan, tawa, rasa hormat, dan kerja sama. Aku ingin kita saling memilih setiap hari."],
+["Only you in my heart","There may be many people in this world, but the place you hold in my heart is yours. I won't compare you with anyone. I want to cherish you for who you are.","Mungkin ada banyak orang di dunia ini, tetapi tempat yang kamu miliki di hatiku adalah milikmu. Aku tidak akan membandingkanmu dengan siapa pun. Aku ingin menyayangimu apa adanya."],
+["Good night, sayangku","Wherever you are tonight, I hope you sleep peacefully and wake up with a smile. Sending you a warm hug, a thousand kisses, and all my sweetest thoughts.","Di mana pun kamu berada malam ini, semoga tidurmu nyenyak dan besok bangun dengan senyuman. Kukirim pelukan hangat, seribu ciuman, dan semua pikiran termanisku."]
+];
+
+const letters = [
+["💌","Open when you miss me","miss"],
+["🌸","A little compliment","compliment"],
+["🫶","When you need comfort","comfort"],
+["💍","My future dream","future"],
+["🌙","Before you sleep","sleep"],
+["❤️","Why I choose you","choose"],
+["🧸","A virtual hug","hug"],
+["🌷","A promise to you","promise"]
+];
+const extras = {
+miss:["If you miss me, look at the sky for a moment and remember that we're under the same one. I'm sending you a hug from wherever I am.","Kalau kamu merindukanku, lihatlah langit sebentar dan ingat bahwa kita berada di bawah langit yang sama. Aku mengirimkan pelukan dari tempatku berada."],
+compliment:["You have a lovely way of making a moment feel special. Your smile, your thoughts, and your own little way of being are precious to me, manisku.","Kamu punya cara yang indah untuk membuat sebuah momen terasa istimewa. Senyummu, pikiranmu, dan caramu menjadi dirimu sendiri sangat berharga bagiku, manisku."],
+comfort:["Take a breath, sayang. You don't need to solve everything at once. I'm here to listen, encourage you, and remind you that you are stronger than you think.","Tarik napas dulu, sayang. Kamu tidak harus menyelesaikan semuanya sekaligus. Aku di sini untuk mendengarkan, menyemangati, dan mengingatkanmu bahwa kamu lebih kuat dari yang kamu kira."],
+future:["I dream of a future where we make decisions together, respect both our families, laugh over simple things, and build a peaceful home. If we marry one day, I want it to be because we're both truly ready.","Aku memimpikan masa depan saat kita mengambil keputusan bersama, menghormati keluarga masing-masing, tertawa karena hal sederhana, dan membangun rumah yang damai. Jika suatu hari kita menikah, aku ingin itu terjadi karena kita berdua benar-benar siap."],
+sleep:["Good night, bidadariku. May your dreams be gentle and your heart feel calm. Istirahat yang nyenyak, my sweetheart jaan.","Selamat malam, bidadariku. Semoga mimpimu indah dan hatimu tenang. Istirahat yang nyenyak, sayangku."],
+choose:["I choose to know you honestly, respect your boundaries, and keep learning how to love you well. No one needs to be perfect for us to build something beautiful together.","Aku memilih untuk mengenalmu dengan jujur, menghormati batasanmu, dan terus belajar menyayangimu dengan baik. Kita tidak harus sempurna untuk membangun sesuatu yang indah bersama."],
+hug:["Imagine my arms around you for a long, warm hug. No pressure, no worries for a moment — just a little reminder that you are cared for.","Bayangkan aku memelukmu erat dengan hangat. Tanpa tekanan dan tanpa khawatir sejenak — hanya pengingat kecil bahwa kamu disayangi."],
+promise:["I can promise honesty, loyalty, patience, and effort. I won't ask you to trust words alone; I want time and my actions to show you what you mean to me.","Aku bisa menjanjikan kejujuran, kesetiaan, kesabaran, dan usaha. Aku tidak akan memintamu percaya pada kata-kata saja; aku ingin waktu dan tindakanku menunjukkan betapa berartinya dirimu bagiku."]
+};
+const together=["Our picture, our little forever","This photo is special because it holds a moment with both of us in it. I don't know exactly what every chapter of our story will look like, but I know the effort I want to bring: honesty, loyalty, patience, and respect. If you need time — even three years or more — I won't pressure you. I want us to move at a pace that feels right for both of us. If marriage becomes our shared dream, I'll work sincerely toward it and keep choosing you through my actions. And wherever life takes us, Liayaya, you'll always be someone I am grateful to have met. My sweetheart jaan, you are not a passing moment to me.","Foto ini istimewa karena menyimpan momen saat kita berdua bersama. Aku tidak tahu persis bagaimana setiap bab kisah kita nanti, tetapi aku tahu usaha yang ingin kuberikan: kejujuran, kesetiaan, kesabaran, dan rasa hormat. Jika kamu membutuhkan waktu — bahkan tiga tahun atau lebih — aku tidak akan memaksamu. Aku ingin kita berjalan dengan tempo yang nyaman bagi kita berdua. Jika pernikahan menjadi impian bersama, aku akan berusaha dengan tulus dan terus memilihmu melalui tindakanku. Apa pun yang terjadi dalam hidup, Liayaya, aku akan selalu bersyukur telah mengenalmu. My sweetheart jaan, bagiku kamu bukan seseorang yang hanya singgah sebentar."];
+function openNote(key){
+ let title,en,id;
+ if(key==='together'){[title,en,id]=together}
+ else if(typeof key==='number'){[title,en,id]=notes[key]}
+ else {const item=extras[key];title=letters.find(x=>x[2]===key)[1];[en,id]=item}
+ document.getElementById('noteTitle').textContent=title;
+ document.getElementById('couplePhoto').style.display=(key==='together'?'block':'none');
+ document.getElementById('noteEn').textContent=en;
+ document.getElementById('noteId').textContent=id;
+ document.getElementById('modal').classList.add('show');
+}
+function closeNote(){document.getElementById('modal').classList.remove('show')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeNote()});
+const clock=document.getElementById('clock');
+for(let i=0;i<12;i++){
+ const angle=(i*30-90)*Math.PI/180, radius=41;
+ const x=50+radius*Math.cos(angle), y=50+radius*Math.sin(angle);
+ const b=document.createElement('button');b.className='hour';b.style.left=x+'%';b.style.top=y+'%';b.setAttribute('aria-label','Open love note '+(i+1));b.onclick=()=>openNote(i);
+ const img=document.createElement('img');img.src=`photo${i+1}.jpg`;img.alt=`Liayaya photo ${i+1}`;img.onerror=()=>img.remove();
+ const fallback=document.createElement('span');fallback.className='fallback';fallback.textContent='🌷';
+ const number=document.createElement('span');number.className='number';number.textContent=i+1;
+ const tiny=document.createElement('span');tiny.className='tiny';tiny.textContent='tap me';
+ b.append(img,fallback,number,tiny);clock.appendChild(b);
+}
+const grid=document.getElementById('letterButtons');
+letters.forEach(([emoji,label,key])=>{const b=document.createElement('button');b.className='love-btn';b.textContent=emoji+' '+label;b.onclick=()=>openNote(key);grid.appendChild(b)});
+async function toggleMusic(){
+ const audio=document.getElementById('bgMusic'),btn=document.getElementById('musicBtn');
+ if(audio.paused){try{await audio.play();btn.textContent='♫ Pause our song'}catch(e){alert('Add music.mp3 to this folder first. Browsers need a tap before music can play.')}}else{audio.pause();btn.textContent='♫ Play our song'}
+}
+</script>
+</body>
+</html>
